@@ -1,0 +1,13 @@
+name: crylox
+version: 0.1.0
+
+authors:
+  - davu <davu@mir-robots.com>
+
+targets:
+  crylox:
+    main: src/crylox.cr
+
+crystal: 1.7.3
+
+license: MIT
