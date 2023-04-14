@@ -50,16 +50,49 @@ module Crylox
         add_token(match('=') ? TokenType::GREATER_EQUAL : TokenType::GREATER)
       when '/'
         if match('/')
-          while peek == '\n' && !at_end?
+          while peek != '\n' && !at_end?
             advance
           end
         else
           add_token(TokenType::SLASH)
         end
       when ' ', '\r', '\t'
+      when '\n'
+        @line += 1
+      when '"'
       else
-
+        if digit?(c)
+          handle_number
+        else
+          if alphanumeric?(c)
+            handle_identifier
+          else
+            puts "#{@line} Unexpected character"
+          end
+        end
       end
+    end
+
+    private def handle_identifier
+      while alphanumeric?(peek)
+        advance
+      end
+      text = @source[@start..@current]
+      type = KEYWORDS.fetch(text) { TokenType::IDENTIFIER }
+      add_token(type)
+    end
+
+    private def handle_number
+      while digit?(peek)
+        advance
+      end
+      if peek == '.' && digit?(peek_next)
+        advance # Consume the "."
+        while digit?(peek)
+          advance
+        end
+      end
+      add_token(TokenType::NUMBER, @source[@start..@current])
     end
 
     private def match(expected : Char) : Bool
@@ -92,5 +125,22 @@ module Crylox
       return '\0' if at_end?
       @source[@current]
     end
+
+    private def peek_next : Char
+      return '\0' if @current + 1 > @source.size
+      @source[@current + 1]
+    end
+  end
+
+  private def digit?(c : Char) : Bool
+    c >= '0' && c <= '9'
+  end
+
+  private def alpha?(c : Char) : Bool
+    (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z') || c == '_'
+  end
+
+  private def alphanumeric?(c : Char) : Bool
+    digit?(c) || alpha?(c)
   end
 end
