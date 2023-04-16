@@ -1,4 +1,6 @@
 require "./scanner"
+require "./expr"
+require "./ast_printer"
 module Crylox::CLI
   def self.run_file(path : String)
     return puts "file doesn't exists" unless File.exists?(path)

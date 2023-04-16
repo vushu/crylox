@@ -106,7 +106,7 @@ module Crylox
       add_token(type, nil)
     end
 
-    private def add_token(type : TokenType, literal : Literal)
+    private def add_token(type : TokenType, literal : LiteralType)
       text = @source[@start..@current]
       @tokens.push(Token.new(type, text, literal, @line))
     end
