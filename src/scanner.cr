@@ -1,6 +1,7 @@
 require "./token"
 
 module Crylox
+  getter :tokens
   class Scanner
     def initialize(@source : String)
       @tokens = Array(Token).new
