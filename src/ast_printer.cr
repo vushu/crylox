@@ -6,11 +6,11 @@ module Crylox
   # Instead just make prints for each Expr type
   class AstPrinter
     def print(expr : Binary) : String
-      parenthesize(expr.operator.lexeme, [expr.left, expr.right])
+      parenthesize(expr.operator.lexeme, expr.left, expr.right)
     end
 
     def print(expr : Grouping) : String
-      parenthesize("group", [expr.expression])
+      parenthesize("group", expr.expression)
     end
 
     def print(expr : Literal) : String
@@ -19,14 +19,14 @@ module Crylox
     end
 
     def print(expr : Unary)
-      parenthesize(expr.operator.lexeme, [expr.right])
+      parenthesize(expr.operator.lexeme, expr.right)
     end
 
     def print(expr : Expr)
       self.print(expr)
     end
 
-    def parenthesize(name : String, exprs : Array(Expr))
+    def parenthesize(name : String, *exprs : Expr)
       builder = String::Builder.new
       builder << "(#{name}"
       exprs.each do |expr|
