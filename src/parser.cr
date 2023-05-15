@@ -21,7 +21,7 @@ module Crylox
     end
 
     private def advance : Token
-      if !at_end?
+      unless at_end?
         @current += 1
       end
       previous
@@ -121,7 +121,7 @@ module Crylox
       equality
     end
 
-    private def consume(type : TokenType, message : String)
+    private def consume(type : TokenType, message : String) : Token
       return advance if check?(type)
       raise error(peek, message)
     end

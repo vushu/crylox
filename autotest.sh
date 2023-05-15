@@ -1,2 +1,2 @@
 #!/usr/bin/bash
-ls src/* | entr -r crystal spec
+ls src/* spec/* | entr -r crystal spec

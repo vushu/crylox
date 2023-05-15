@@ -2,6 +2,7 @@ require "./token"
 
 module Crylox
   getter :tokens
+
   class Scanner
     def initialize(@source : String)
       @tokens = Array(Token).new
@@ -18,7 +19,7 @@ module Crylox
       @tokens.push Token.new(TokenType::EOF, "", nil, @line)
     end
 
-    private def scan_token
+    private def scan_token : Void
       c = advance
       case c
       when '('
@@ -64,12 +65,10 @@ module Crylox
       else
         if digit?(c)
           handle_number
+        elsif alphanumeric?(c)
+          handle_identifier
         else
-          if alphanumeric?(c)
-            handle_identifier
-          else
-            puts "#{@line} Unexpected character"
-          end
+          puts "#{@line} Unexpected character"
         end
       end
     end
@@ -78,7 +77,7 @@ module Crylox
       while alphanumeric?(peek)
         advance
       end
-      text = @source[@start..@current]
+      text = @source[@start...@current]
       type = KEYWORDS.fetch(text) { TokenType::IDENTIFIER }
       add_token(type)
     end
@@ -93,7 +92,7 @@ module Crylox
           advance
         end
       end
-      add_token(TokenType::NUMBER, @source[@start..@current])
+      add_token(TokenType::NUMBER, @source[@start...@current].to_f32)
     end
 
     private def match(expected : Char) : Bool
