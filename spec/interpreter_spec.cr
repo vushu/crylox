@@ -11,7 +11,7 @@ describe Crylox do
       expr = parser.parse
       interpreter = Interpreter.new
       if expr
-        print("Evaluated : ", interpreter.evaluate(expr))
+        print("Evaluated #{source_code} : ", interpreter.evaluate(expr))
       end
     end
   end

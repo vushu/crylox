@@ -17,7 +17,6 @@ describe Crylox do
     it "Should print Binary expr as expected" do
       minus_tok = Token.new(TokenType::MINUS, "-", nil, 1)
       star_tok = Token.new(TokenType::STAR, "*", nil, 1)
-
       unary = Unary.new(minus_tok, Literal.new("123"))
       grouping = Grouping.new(Literal.new(45.67))
       binary = Binary.new(unary, star_tok, grouping)

@@ -77,7 +77,7 @@ class Interpreter
   end
 
   private def truthy?(object) : Bool
-    return false if (object.nil?)
+    return false if object.nil?
     if object.is_a?(Bool)
       return object.as(Bool)
     end
