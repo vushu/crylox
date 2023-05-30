@@ -16,47 +16,47 @@ module Crylox
         @start = @current
         scan_token
       end
-      @tokens.push Token.new(TokenType::EOF, "", nil, @line)
+      @tokens.push Token.new(TokenType::Eof, "", nil, @line)
     end
 
     private def scan_token : Void
       c = advance
       case c
       when '('
-        add_token(TokenType::LEFT_PAREN)
+        add_token(TokenType::Left_paren)
       when ')'
-        add_token(TokenType::RIGHT_PAREN)
+        add_token(TokenType::Right_paren)
       when '{'
-        add_token(TokenType::LEFT_BRACE)
+        add_token(TokenType::Left_brace)
       when '}'
-        add_token(TokenType::RIGHT_BRACE)
+        add_token(TokenType::Right_brace)
       when ','
-        add_token(TokenType::COMMA)
+        add_token(TokenType::Comma)
       when '.'
-        add_token(TokenType::DOT)
+        add_token(TokenType::Dot)
       when '-'
-        add_token(TokenType::MINUS)
+        add_token(TokenType::Minus)
       when '+'
-        add_token(TokenType::PLUS)
+        add_token(TokenType::Plus)
       when ';'
-        add_token(TokenType::SEMICOLON)
+        add_token(TokenType::Semicolon)
       when '*'
-        add_token(TokenType::STAR)
+        add_token(TokenType::Star)
       when '!'
-        add_token(match('=') ? TokenType::BANG_EQUAL : TokenType::BANG)
+        add_token(match('=') ? TokenType::Bang_equal : TokenType::Bang)
       when '='
-        add_token(match('=') ? TokenType::EQUAL_EQUAL : TokenType::EQUAL)
+        add_token(match('=') ? TokenType::Equal_equal : TokenType::Equal)
       when '<'
-        add_token(match('=') ? TokenType::LESS_EQUAL : TokenType::LESS)
+        add_token(match('=') ? TokenType::Less_equal : TokenType::Less)
       when '>'
-        add_token(match('=') ? TokenType::GREATER_EQUAL : TokenType::GREATER)
+        add_token(match('=') ? TokenType::Greater_equal : TokenType::Greater)
       when '/'
         if match('/')
           while peek != '\n' && !at_end?
             advance
           end
         else
-          add_token(TokenType::SLASH)
+          add_token(TokenType::Slash)
         end
       when ' ', '\r', '\t'
       when '\n'
@@ -78,7 +78,7 @@ module Crylox
         advance
       end
       text = @source[@start...@current]
-      type = KEYWORDS.fetch(text) { TokenType::IDENTIFIER }
+      type = KEYWORDS.fetch(text) { TokenType::Identifier }
       add_token(type)
     end
 
@@ -92,7 +92,7 @@ module Crylox
           advance
         end
       end
-      add_token(TokenType::NUMBER, @source[@start...@current].to_f32)
+      add_token(TokenType::Number, @source[@start...@current].to_f32)
     end
 
     private def match(expected : Char) : Bool

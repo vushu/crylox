@@ -1,70 +1,70 @@
 module Crylox
   KEYWORDS =
     {
-      and:    TokenType::AND,
-      class:  TokenType::CLASS,
-      else:   TokenType::ELSE,
-      false:  TokenType::FALSE,
-      for:    TokenType::FOR,
-      fun:    TokenType::FUN,
-      if:     TokenType::IF,
-      nil:    TokenType::NIL,
-      or:     TokenType::OR,
-      print:  TokenType::PRINT,
-      return: TokenType::RETURN,
-      super:  TokenType::SUPER,
-      this:   TokenType::THIS,
-      true:   TokenType::TRUE,
-      var:    TokenType::VAR,
-      while:  TokenType::WHILE,
+      and:    TokenType::And,
+      class:  TokenType::Class,
+      else:   TokenType::Else,
+      false:  TokenType::False,
+      for:    TokenType::For,
+      fun:    TokenType::Fun,
+      if:     TokenType::If,
+      nil:    TokenType::Nil,
+      or:     TokenType::Or,
+      print:  TokenType::Print,
+      return: TokenType::Return,
+      super:  TokenType::Super,
+      this:   TokenType::This,
+      true:   TokenType::True,
+      var:    TokenType::Var,
+      while:  TokenType::While,
     }
   enum TokenType
     # Single-character tokens.
-    LEFT_PAREN
-    RIGHT_PAREN
-    LEFT_BRACE
-    RIGHT_BRACE
-    COMMA
-    DOT
-    MINUS
-    PLUS
-    SEMICOLON
-    SLASH
-    STAR
+    Left_paren
+    Right_paren
+    Left_brace
+    Right_brace
+    Comma
+    Dot
+    Minus
+    Plus
+    Semicolon
+    Slash
+    Star
 
     # One or two character tokens.
-    BANG
-    BANG_EQUAL
-    EQUAL
-    EQUAL_EQUAL
-    GREATER
-    GREATER_EQUAL
-    LESS
-    LESS_EQUAL
+    Bang
+    Bang_equal
+    Equal
+    Equal_equal
+    Greater
+    Greater_equal
+    Less
+    Less_equal
 
     # Literals.
-    IDENTIFIER
-    STRING
-    NUMBER
+    Identifier
+    String
+    Number
 
     # Keywords.
-    AND
-    CLASS
-    ELSE
-    FALSE
-    FUN
-    FOR
-    IF
-    NIL
-    OR
-    PRINT
-    RETURN
-    SUPER
-    THIS
-    TRUE
-    VAR
-    WHILE
+    And
+    Class
+    Else
+    False
+    Fun
+    For
+    If
+    Nil
+    Or
+    Print
+    Return
+    Super
+    This
+    True
+    Var
+    While
 
-    EOF
+    Eof
   end
 end
