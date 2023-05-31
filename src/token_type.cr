@@ -20,10 +20,10 @@ module Crylox
     }
   enum TokenType
     # Single-character tokens.
-    Left_paren
-    Right_paren
-    Left_brace
-    Right_brace
+    LeftParen
+    RightParen
+    LeftBrace
+    RightBrace
     Comma
     Dot
     Minus
@@ -34,13 +34,13 @@ module Crylox
 
     # One or two character tokens.
     Bang
-    Bang_equal
+    BangEqual
     Equal
-    Equal_equal
+    EqualEqual
     Greater
-    Greater_equal
+    GreaterEqual
     Less
-    Less_equal
+    LessEqual
 
     # Literals.
     Identifier
@@ -65,6 +65,6 @@ module Crylox
     Var
     While
 
-    Eof
+    EOF
   end
 end

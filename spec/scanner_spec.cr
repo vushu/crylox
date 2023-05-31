@@ -6,7 +6,7 @@ describe Crylox do
     it "should scan tokens" do
       scanner = Scanner.new("!=")
       tokens = scanner.scan_tokens
-      tokens.first.type.should eq(TokenType::BANG_EQUAL)
+      tokens.first.type.should eq(TokenType::BangEqual)
       tokens.last.type.should eq(TokenType::EOF)
     end
   end
@@ -31,7 +31,7 @@ describe Crylox do
     it "should scan tokens" do
       scanner = Scanner.new("233.3")
       tokens = scanner.scan_tokens
-      tokens.first.type.should eq(TokenType::NUMBER)
+      tokens.first.type.should eq(TokenType::Number)
       tokens.last.type.should eq(TokenType::EOF)
     end
   end
@@ -40,7 +40,7 @@ describe Crylox do
     it "should scan tokens" do
       scanner = Scanner.new("mama")
       tokens = scanner.scan_tokens
-      tokens.first.type.should eq(TokenType::IDENTIFIER)
+      tokens.first.type.should eq(TokenType::Identifier)
       tokens.last.type.should eq(TokenType::EOF)
     end
   end
@@ -49,7 +49,7 @@ describe Crylox do
     it "should scan tokens" do
       scanner = Scanner.new("papa")
       tokens = scanner.scan_tokens
-      tokens.first.type.should eq(TokenType::IDENTIFIER)
+      tokens.first.type.should eq(TokenType::Identifier)
       tokens.last.type.should eq(TokenType::EOF)
     end
   end
@@ -58,7 +58,7 @@ describe Crylox do
     it "should scan tokens" do
       scanner = Scanner.new("super")
       tokens = scanner.scan_tokens
-      tokens.first.type.should eq(TokenType::SUPER)
+      tokens.first.type.should eq(TokenType::Super)
       tokens.last.type.should eq(TokenType::EOF)
     end
   end

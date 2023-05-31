@@ -19,26 +19,26 @@ class Interpreter
     end
 
     case expr.operator.type
-    when TokenType::MINUS
+    when TokenType::Minus
       return left.as(Float32) - right.as(Float32)
-    when TokenType::SLASH
+    when TokenType::Slash
       return left.as(Float32) / right.as(Float32)
-    when TokenType::STAR
+    when TokenType::Star
       return left.as(Float32) * right.as(Float32)
-    when TokenType::PLUS
+    when TokenType::Plus
       if left.is_a?(Number) && right.is_a?(Number)
         return left.as(Float32) + right.as(Float32)
       elsif left.is_a?(String) && right.is_a?(String)
         return left.to_s + right.to_s
       end
       raise "Should not end here"
-    when TokenType::GREATER
+    when TokenType::Greater
       return left.as(Float32) > right.as(Float32)
-    when TokenType::GREATER_EQUAL
+    when TokenType::GreaterEqual
       return left.as(Float32) >= right.as(Float32)
-    when TokenType::BANG_EQUAL
+    when TokenType::BangEqual
       return left.as(Float32) != right.as(Float32)
-    when TokenType::EQUAL_EQUAL
+    when TokenType::EqualEqual
       return left.as(Float32) == right.as(Float32)
     else
       puts "no case"
@@ -54,9 +54,9 @@ class Interpreter
   def evaluate(expr : Unary)
     right = evaluate(expr.right)
     case expr.operator.type
-    when TokenType::BANG
+    when TokenType::Bang
       return !truthy?(right)
-    when TokenType::MINUS
+    when TokenType::Minus
       puts(right.to_s)
       check_number_operand(expr.operator, right)
       return -(right.as(Float32))

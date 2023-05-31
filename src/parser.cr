@@ -42,12 +42,12 @@ module Crylox
     private def synchronize : Void
       advance
       while !at_end?
-        return if previous.type == TokenType::SEMICOLON
+        return if previous.type == TokenType::Semicolon
         case peek.type
-        when TokenType::CLASS, TokenType::FUN,
-             TokenType::VAR, TokenType::IF,
-             TokenType::WHILE, TokenType::PRINT,
-             TokenType::RETURN
+        when TokenType::Class, TokenType::Fun,
+             TokenType::Var, TokenType::If,
+             TokenType::While, TokenType::Print,
+             TokenType::Return
           # Doing nothing
         else
         end
@@ -57,7 +57,7 @@ module Crylox
 
     private def equality
       expr = comparison
-      while match(TokenType::BANG_EQUAL, TokenType::EQUAL_EQUAL)
+      while match(TokenType::BangEqual, TokenType::EqualEqual)
         operator = previous
         right = comparison
         expr = Binary.new(expr, operator, right)
@@ -67,7 +67,7 @@ module Crylox
 
     private def comparison
       expr = term
-      while match(TokenType::GREATER, TokenType::GREATER_EQUAL)
+      while match(TokenType::Greater, TokenType::GreaterEqual)
         operator = previous
         right = term
         expr = Binary.new(expr, operator, right)
@@ -77,7 +77,7 @@ module Crylox
 
     private def term
       expr = factor
-      while match(TokenType::MINUS, TokenType::PLUS)
+      while match(TokenType::Minus, TokenType::Plus)
         operator = previous
         right = factor
         expr = Binary.new(expr, operator, right)
@@ -87,7 +87,7 @@ module Crylox
 
     private def factor
       expr = unary
-      while match(TokenType::SLASH, TokenType::STAR)
+      while match(TokenType::Slash, TokenType::Star)
         operator = previous
         right = unary
         expr = Binary.new(expr, operator, right)
@@ -96,7 +96,7 @@ module Crylox
     end
 
     private def unary
-      if match(TokenType::BANG, TokenType::MINUS)
+      if match(TokenType::Bang, TokenType::Minus)
         operator = previous
         right = unary
         return Unary.new(operator, right)
@@ -105,13 +105,13 @@ module Crylox
     end
 
     private def primary : Expr
-      return Literal.new(false) if match(TokenType::FALSE)
-      return Literal.new(true) if match(TokenType::TRUE)
-      return Literal.new(nil) if match(TokenType::NIL)
-      return Literal.new(previous.literal) if match(TokenType::NUMBER, TokenType::STRING)
-      if match(TokenType::LEFT_PAREN)
+      return Literal.new(false) if match(TokenType::False)
+      return Literal.new(true) if match(TokenType::True)
+      return Literal.new(nil) if match(TokenType::Nil)
+      return Literal.new(previous.literal) if match(TokenType::Number, TokenType::String)
+      if match(TokenType::LeftParen)
         expr = expression
-        consume(TokenType::RIGHT_PAREN, "Expect ')' after expression.")
+        consume(TokenType::RightParen, "Expect ')' after expression.")
         return Grouping.new(expr)
       end
       raise error(peek, "Expression expected")

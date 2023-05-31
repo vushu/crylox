@@ -16,20 +16,20 @@ module Crylox
         @start = @current
         scan_token
       end
-      @tokens.push Token.new(TokenType::Eof, "", nil, @line)
+      @tokens.push Token.new(TokenType::EOF, "", nil, @line)
     end
 
     private def scan_token : Void
       c = advance
       case c
       when '('
-        add_token(TokenType::Left_paren)
+        add_token(TokenType::LeftParen)
       when ')'
-        add_token(TokenType::Right_paren)
+        add_token(TokenType::RightParen)
       when '{'
-        add_token(TokenType::Left_brace)
+        add_token(TokenType::LeftBrace)
       when '}'
-        add_token(TokenType::Right_brace)
+        add_token(TokenType::RightBrace)
       when ','
         add_token(TokenType::Comma)
       when '.'
@@ -43,13 +43,13 @@ module Crylox
       when '*'
         add_token(TokenType::Star)
       when '!'
-        add_token(match('=') ? TokenType::Bang_equal : TokenType::Bang)
+        add_token(match('=') ? TokenType::BangEqual : TokenType::Bang)
       when '='
-        add_token(match('=') ? TokenType::Equal_equal : TokenType::Equal)
+        add_token(match('=') ? TokenType::EqualEqual : TokenType::Equal)
       when '<'
-        add_token(match('=') ? TokenType::Less_equal : TokenType::Less)
+        add_token(match('=') ? TokenType::LessEqual : TokenType::Less)
       when '>'
-        add_token(match('=') ? TokenType::Greater_equal : TokenType::Greater)
+        add_token(match('=') ? TokenType::GreaterEqual : TokenType::Greater)
       when '/'
         if match('/')
           while peek != '\n' && !at_end?
