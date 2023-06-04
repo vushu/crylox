@@ -9,7 +9,7 @@ describe Crylox do
       tokens = scanner.scan_tokens
       parser = Parser.new(tokens)
       expr = parser.parse
-      printer = AstPrinter.new
+      printer = ASTPrinter.new
       expected ="(==  (+  40.0 2.0) (+  (*  4.0 10.0) 2.0))"
       if (expr)
         printer.print(expr).should eq(expected)

@@ -2,9 +2,6 @@ require "./spec_helper"
 
 include Crylox
 
-class DummyExpr < Expr
-end
-
 describe Crylox do
   describe "Should instantiate correctly" do
     it "Binary should be as expected" do

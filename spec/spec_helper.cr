@@ -1,2 +1,5 @@
 require "spec"
-require "../src/crylox"
+require "../src/cli"
+
+class DummyExpr < Crylox::Expr
+end

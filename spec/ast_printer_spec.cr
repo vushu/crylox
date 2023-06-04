@@ -11,7 +11,7 @@ describe Crylox do
       tok = Token.new(TokenType::Star, "*", nil, 1)
       binary = Binary.new(literal, tok, literal2)
 
-      printer = AstPrinter.new
+      printer = ASTPrinter.new
       printer.print(binary).should eq("(* 3.14 333)")
     end
     it "Should print Binary expr as expected" do
@@ -21,7 +21,7 @@ describe Crylox do
       grouping = Grouping.new(Literal.new(45.67))
       binary = Binary.new(unary, star_tok, grouping)
 
-      printer = AstPrinter.new
+      printer = ASTPrinter.new
       printer.print(binary).should eq("(* (- 123) (group 45.67))")
     end
   end

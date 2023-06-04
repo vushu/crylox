@@ -1,10 +1,8 @@
-require "./expr"
-
 module Crylox
   # Since crystal supports multiple dispatch
   # we don't need to make visitor pattern,
   # Instead just make prints for each Expr type
-  class AstPrinter
+  class ASTPrinter
     def print(expr : Binary) : String
       parenthesize(expr.operator.lexeme, expr.left, expr.right)
     end
@@ -20,6 +18,14 @@ module Crylox
 
     def print(expr : Unary)
       parenthesize(expr.operator.lexeme, expr.right)
+    end
+
+    def print(stmt : Print)
+      print(stmt.expression)
+    end
+
+    def print(stmt : Stmt)
+      self.print(stmt)
     end
 
     def print(expr : Expr)

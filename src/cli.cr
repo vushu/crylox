@@ -1,5 +1,5 @@
 require "./scanner"
-require "./expr"
+require "./generate_ast"
 require "./ast_printer"
 require "./parser"
 require "./interpreter"
